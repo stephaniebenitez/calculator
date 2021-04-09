@@ -5,18 +5,22 @@ class Calculator {
     this.currentEntry = currentEntry;
     this.clear();
   }
+
   clear() {
     this.currentOperant = '';
-    this.perviousOperant = '';
+    this.previousOperant = '';
     this.operation = undefined;
   }
 
   delete() {
     //remove 1 number
+    this.currentOperant = this.currentOperant.toString().slice(0, -1);
   }
 
   appendNumber(number) {
     //whenever press number adds it on
+    if (number === '.' && this.currentOperant.includes('.')) return;
+    this.currentOperant = this.currentOperant.toString() + number.toString();
   }
 
   chooseOperation(operation) {
@@ -28,7 +32,8 @@ class Calculator {
   }
 
   updateDisplay() {
-    this.currentEntry.innerText = this.currentEntry;
+    this.currentEntry.innerText = this.currentOperant;
+    this.previousEntry.innerText = this.previousOperant;
   }
 }
 
@@ -40,13 +45,37 @@ const allClearButton = document.querySelector('#allclear');
 const previousEntry = document.querySelector('#previous-entry');
 const currentEntry = document.querySelector('#current-entry');
 
+console.log(previousEntry, currentEntry, deleteButton);
+
 const calculator = new Calculator(previousEntry, currentEntry);
+console.log(calculator);
 
 numberButtons.forEach((button) => {
   button.addEventListener('click', () => {
     calculator.appendNumber(button.innerText);
+    console.log(button.innerText);
     calculator.updateDisplay();
   });
+});
+
+operationButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    calculator.appendNumber(button.innerText);
+    console.log(button.innerText);
+    calculator.updateDisplay();
+  });
+});
+
+allClearButton.addEventListener('click', () => {
+  // calculator.currentOperant = '';
+  // calculator.previousOperant = '';
+  calculator.clear();
+  calculator.updateDisplay();
+});
+
+deleteButton.addEventListener('click', () => {
+  calculator.delete();
+  calculator.updateDisplay();
 });
 //=======
 //dive for previous,current, ac button ,f
