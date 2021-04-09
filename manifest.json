@@ -2,16 +2,16 @@
   "name": "Calculator", //the primary identifier
   "description": "Build an Extension!", //
   "version": "1.0",
-  "manifest_version": 3,
+  "manifest_version": 2,
   "content_scripts": [
     {
-      "matches": [["<all_urls>"]],
+      "matches": ["<all_urls>"],
       "js": ["cal.js"]
     }
   ],
   "browser_action": {
     "default_popup": "cal.html",
-    "default_title": "Calculator",
+    "default_title": "Calculator"
   }
 }
 /*"background": {
