@@ -1,13 +1,12 @@
+
 *, *::after, *::before {
   box-sizing: border-box;
   font-family: 'Times New Roman', Times, serif;
-  font-weight: normal;
 }
 
 body {
   padding: 0;
   margin: 0;
-
 }
 
 .output {
@@ -36,6 +35,7 @@ body {
   background-color: rgba (255, 255, 255, .95);
 }
 
+
 .calculator-grid .operator {
   background-color: orange;
 }
@@ -56,6 +56,7 @@ body {
   word-break: break-all;
 }
 
+
 .output .previous-entry{
   color: rgba (255, 255, 255, .75);
   font-size: 1.5rem;
@@ -63,5 +64,14 @@ body {
 
 .output .current-entry{
   color: rgba (255, 255, 255, .75);
+}
+
+.output .previous-entry {
+  color: rgba (255, 255, 255, 0.75);
+  font-size: 1.5rem;
+}
+
+.output .current-entry {
+  color: rgba (255, 255, 255, 0.75);
   font-size: 2.5rem;
 }

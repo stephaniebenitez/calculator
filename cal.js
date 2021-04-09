@@ -1,3 +1,4 @@
+//<<<<<<< main
 class Calculator {
   constructor(previousEntry, currentEntry) {
     this.previousEntry = previousEntry;
@@ -76,3 +77,6 @@ deleteButton.addEventListener('click', () => {
   calculator.delete();
   calculator.updateDisplay();
 });
+//=======
+//dive for previous,current, ac button ,f
+//>>>>>>> main
