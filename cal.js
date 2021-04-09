@@ -1,3 +1,4 @@
+//<<<<<<< main
 class Calculator {
   constructor(previousEntry, currentEntry) {
     this.previousEntry = previousEntry;
@@ -47,3 +48,6 @@ numberButtons.forEach((button) => {
     calculator.updateDisplay();
   });
 });
+//=======
+//dive for previous,current, ac button ,f
+//>>>>>>> main
