@@ -1,8 +1,9 @@
-//<<<<<<< main
+
 class Calculator {
   constructor(previousEntry, currentEntry) {
     this.previousEntry = previousEntry;
     this.currentEntry = currentEntry;
+    this.operation = null;
     this.clear();
   }
 
@@ -19,16 +20,25 @@ class Calculator {
 
   appendNumber(number) {
     //whenever press number adds it on
+
     if (number === '.' && this.currentOperant.includes('.')) return;
     this.currentOperant = this.currentOperant.toString() + number.toString();
+
   }
 
   chooseOperation(operation) {
-    //whatever press for operation add it into the image
+   // whatever press for operation add it into the image
+    if (operation !== "=" && this.operation === "undefined" && this.previousOperant===""){
+    this.previousOperant =this.currentOperant;
+    this.operation = operation;
+    //console.log("operation", operation,)
+    }
+
   }
 
   compute() {
     //does the calculator
+   
   }
 
   updateDisplay() {
@@ -61,11 +71,13 @@ numberButtons.forEach((button) => {
 operationButtons.forEach((button) => {
   button.addEventListener('click', () => {
     calculator.appendNumber(button.innerText);
-    console.log(button.innerText);
+    console.log("operationButton",button.innerText);
+    calculator.chooseOperation(button.innerText);
     calculator.updateDisplay();
+    
   });
 });
-
+//chrome doesnt like event listener
 allClearButton.addEventListener('click', () => {
   // calculator.currentOperant = '';
   // calculator.previousOperant = '';
@@ -77,6 +89,6 @@ deleteButton.addEventListener('click', () => {
   calculator.delete();
   calculator.updateDisplay();
 });
-//=======
-//dive for previous,current, ac button ,f
-//>>>>>>> main
+
+
+

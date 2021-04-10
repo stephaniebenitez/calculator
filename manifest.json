@@ -10,7 +10,8 @@
     }
   ],
   "browser_action": {
-    "default_popup": "cal.html",
+    "default_icon":"calc.png",
+     "default_popup": "cal.html",
     "default_title": "Calculator"
   }
 }
