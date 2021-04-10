@@ -20,24 +20,24 @@ class Calculator {
   appendNumber(number) {
     //whenever press number adds it on
     if (number === '.' && this.currentOperant.includes('.')) return;
-    if (number === '0' && this.currentOperant.length === undefined) return;
+    if (number === '0' && this.currentOperant.length === 0) return;
     this.currentOperant = this.currentOperant.toString() + number.toString();
 
   }
 
   chooseOperation(operation) {
    // whatever press for operation add it into the image
-    if (this.currentOperant === '')return;
+    if (this.currentOperant.length === 0) return;
 
-    if (this.previousOperant !== ''){
+    if (this.previousOperant.length > 0){
       this.compute();
-    } 
+    } else {
     this.operation = operation;
     this.previousOperant = this.currentOperant;
-    this.currentOperant =''
-    
+    this.currentOperant = ''
     }
 
+  }
   
 
   compute() {
@@ -60,16 +60,21 @@ class Calculator {
     if (this.operation ==="÷"){
       ret = prev/curr;
     }
-    this.operation =undefined
-    this.previousOperant =''
-    this.currentOperant = ret;
-
+    this.currentOperant = ""
+    this.operation = undefined;
+    this.previousOperant = ret
+  
   }
 
   updateDisplay() {
     this.currentEntry.innerText = this.currentOperant;
-    this.previousEntry.innerText = this.previousOperant;
+    if(this.operation){
+      this.previousEntry.innerText = `${this.previousOperant} ${this.operation}`
+    } else {
+    this.previousEntry.innerText= `${this.previousOperant}`
   }
+}
+
 }
 
 const numberButtons = document.querySelectorAll('#number');
@@ -97,7 +102,7 @@ numberButtons.forEach((button) => {
 operationButtons.forEach((operant)=> {
   operant.addEventListener('click', () => {
   calculator.chooseOperation(operant.innerText);
-    console.log(calculator);
+    console.log(operant.innerText);
     calculator.updateDisplay();
     
   });
