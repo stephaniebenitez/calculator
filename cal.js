@@ -2,7 +2,6 @@ class Calculator {
   constructor(previousEntry, currentEntry) {
     this.previousEntry = previousEntry;
     this.currentEntry = currentEntry;
-    this.operation = null;
     this.clear();
   }
 
@@ -27,17 +26,21 @@ class Calculator {
 
   chooseOperation(operation) {
    // whatever press for operation add it into the image
-    if (this.currentOperant.length === 0) return;
+   console.log('thisis previous operations:' + this.previousOperant, 'this is current operations' + this.currentOperant )
+   
+   if (this.currentOperant.length === 0)  return;
 
-    if (this.previousOperant.length > 0){
-      this.compute();
-    } else {
+   if (this.previousOperant.length > 0 && this.currentOperant.length > 0){
+     console.log(this.previousOperant, this.currentOperant )
+     console.log("choose to commute")
+    this.compute();
+  }  
     this.operation = operation;
     this.previousOperant = this.currentOperant;
-    this.currentOperant = ''
+    this.currentOperant = '';
     }
 
-  }
+  //}
   
 
   compute() {
@@ -45,10 +48,12 @@ class Calculator {
     let prev =parseFloat(this.previousOperant);
     let curr = parseFloat(this.currentOperant);
     let ret;
-    if (prev === NaN|| curr === NaN)return;
-    const obj = {};
+    //console.log(this.previousOperant);
+    //console.log(prev,curr)
+    if (prev === NaN|| curr === NaN)return; 
+
     if(this.operation ==="+"){
-      ret = prev +curr
+      ret = prev + curr
     }
     if (this.operation === "-"){
       ret =prev - curr
@@ -57,12 +62,16 @@ class Calculator {
       ret = prev*curr
     }
     
-    if (this.operation ==="÷"){
+    if (this.operation === "÷"){
       ret = prev/curr;
     }
+    console.log(ret)
     this.currentOperant = ""
-    this.operation = undefined;
-    this.previousOperant = ret
+    //this.operation = undefined;
+    this.previousOperant = `${ret}`
+ 
+    //console.log(this.previousOperant);
+    console.log('thisis previous:' + this.previousOperant, 'this is current' + this.currentOperant )
   
   }
 
@@ -88,13 +97,13 @@ const currentEntry = document.querySelector('#current-entry');
 //console.log(previousEntry, currentEntry, deleteButton);
 
 const calculator = new Calculator(previousEntry, currentEntry);
-console.log(calculator);
+//console.log(calculator);
 
 numberButtons.forEach((button) => {
   button.addEventListener('click', () => {
     calculator.appendNumber(button.innerText);
-    console.log(button.innerText);
-    console.log(calculator.currentOperant);
+    //console.log(button.innerText);
+    //console.log(calculator.currentOperant);
     calculator.updateDisplay();
   });
 });
@@ -102,9 +111,8 @@ numberButtons.forEach((button) => {
 operationButtons.forEach((operant)=> {
   operant.addEventListener('click', () => {
   calculator.chooseOperation(operant.innerText);
-    console.log(operant.innerText);
+    //console.log(operant.innerText);
     calculator.updateDisplay();
-    
   });
 })
 
