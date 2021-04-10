@@ -1,4 +1,3 @@
-//<<<<<<< main
 class Calculator {
   constructor(previousEntry, currentEntry) {
     this.previousEntry = previousEntry;
@@ -20,6 +19,7 @@ class Calculator {
   appendNumber(number) {
     //whenever press number adds it on
     if (number === '.' && this.currentOperant.includes('.')) return;
+    if (number === '0' && this.currentOperant.length === undefined) return;
     this.currentOperant = this.currentOperant.toString() + number.toString();
   }
 
@@ -45,7 +45,7 @@ const allClearButton = document.querySelector('#allclear');
 const previousEntry = document.querySelector('#previous-entry');
 const currentEntry = document.querySelector('#current-entry');
 
-console.log(previousEntry, currentEntry, deleteButton);
+//console.log(previousEntry, currentEntry, deleteButton);
 
 const calculator = new Calculator(previousEntry, currentEntry);
 console.log(calculator);
@@ -54,6 +54,7 @@ numberButtons.forEach((button) => {
   button.addEventListener('click', () => {
     calculator.appendNumber(button.innerText);
     console.log(button.innerText);
+    console.log(calculator.currentOperant);
     calculator.updateDisplay();
   });
 });
@@ -61,7 +62,7 @@ numberButtons.forEach((button) => {
 operationButtons.forEach((button) => {
   button.addEventListener('click', () => {
     calculator.appendNumber(button.innerText);
-    console.log(button.innerText);
+    //console.log(button.innerText);
     calculator.updateDisplay();
   });
 });
@@ -77,6 +78,3 @@ deleteButton.addEventListener('click', () => {
   calculator.delete();
   calculator.updateDisplay();
 });
-//=======
-//dive for previous,current, ac button ,f
-//>>>>>>> main
